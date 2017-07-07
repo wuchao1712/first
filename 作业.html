@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>作业</title>
+        <script src="lib/angular.min.js"></script>
+    </head>
+    <body ng-app="app">
+    	<div ng-controller="ctrl">
+    		<input type="text" ng-model="msg" ng-change="aaa()">
+    		<p>{{a}}</p>
+    	</div>
+    </body>
+    <script type="text/javascript">
+    var app = angular.module("app",[]);
+    app.controller("ctrl",["$scope","self",function($scope,self){
+    	$scope.aaa = function(){
+    	$scope.a = self.a($scope.msg);
+    	
+    	}
+    }])
+    app.factory("self",function(){
+    	function format(msg){
+    		var arr = msg.split("");
+    		var str = arr.join('-');
+    		return str;
+    	}
+    	return {
+    		a:format
+    	};
+    })
+    </script>
+</html>

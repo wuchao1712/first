@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>http</title>
+        <script src="lib/angular.min.js"></script>
+    </head>
+    <body ng-app="app">
+    	<div ng-controller="ctrl">
+    		<input type="button" value="show" ng-click="show()">
+    	
+    	</div>
+    </body>
+    <script type="text/javascript">
+    var app = angular.module("app",[]);
+    app.controller("ctrl",["$scope","$http",function($scope,$http){
+    	$scope.show = function(){
+    		// 普通的post请求
+	    		// $http({
+	    		// 	URL:"data.php",
+	    		// 	method:"post"
+	    		// }).success(function(result){
+	    		// 	console.log(result);
+	    		// })
+    		// 带有参数的请求
+    			// get请求
+    		// $http({
+	    	// 	url:"data.php",
+	    	// 	method:"get",
+	    	// 	params:{"name":"zed"}
+	    	// }).success(function(result){
+	    	// 	console.log(result);
+	    	// })
+	    // post请求
+	    // post其你去如果不设置请求头，参数也是以get方式获取的
+	    	$http({
+	    		url:"data.php",
+	    		method:"post",
+	    		headers:{"Content-Type":"application/x-www-form-urlencoded"},
+	    		// params:{"name":"zed","age":23} --- 报错
+	    		data:'"name"="zed"'
+	    	}).success(function(result){
+	    		console.log(result);
+	    	})
+    	}
+    }])
+    </script>
+</html>
